@@ -1,0 +1,205 @@
+/* ---------- color & font variables ---------- */
+:root {
+  --paper: #faf6ef;
+  --card: #ffffff;
+  --ink: #2b2a28;
+  --ink-soft: #6f6a62;
+  --accent: #3a5a7d;
+  --accent-dark: #2c4660;
+  --line: #e8e2d6;
+  --done: #b9b3a7;
+  --danger: #b3543f;
+  --danger-dark: #95402c;
+}
+
+/* ---------- page setup ---------- */
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.04) 1px, transparent 0);
+  background-size: 22px 22px;
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+}
+
+.container {
+  background-color: var(--card);
+  padding: 32px 30px;
+  border-radius: 14px;
+  width: 360px;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px rgba(43, 42, 40, 0.08);
+}
+
+/* ---------- heading ---------- */
+h1 {
+  text-align: center;
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+
+/* small line under the heading, just for a bit of character */
+h1::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 2px;
+  margin: 10px auto 22px;
+}
+
+/* ---------- input box and button ---------- */
+.input-box {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  background-color: var(--paper);
+  color: var(--ink);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#taskInput::placeholder {
+  color: var(--ink-soft);
+}
+
+#taskInput:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(58, 90, 125, 0.15);
+}
+
+#addBtn {
+  padding: 11px 18px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+#addBtn:hover {
+  background-color: var(--accent-dark);
+}
+
+#addBtn:active {
+  transform: scale(0.97);
+}
+
+/* ---------- task list ---------- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--paper);
+  border: 1px solid var(--line);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border-radius: 9px;
+  font-size: 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+  animation: taskIn 0.2s ease;
+}
+
+/* gentle lift when hovering a task */
+li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(43, 42, 40, 0.08);
+}
+
+/* when a task is marked done */
+li.done {
+  background-color: #f4f1ea;
+  border-color: var(--line);
+}
+
+li.done span {
+  text-decoration: line-through;
+  color: var(--done);
+}
+
+li span {
+  flex: 1;
+  cursor: pointer;
+  padding-right: 10px;
+  word-break: break-word;
+  transition: color 0.15s ease;
+}
+
+/* ---------- edit and delete buttons ---------- */
+.btn-group {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.editBtn, .deleteBtn {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.editBtn {
+  background-color: var(--accent);
+}
+
+.editBtn:hover {
+  background-color: var(--accent-dark);
+}
+
+.deleteBtn {
+  background-color: var(--danger);
+}
+
+.deleteBtn:hover {
+  background-color: var(--danger-dark);
+}
+
+.editBtn:active, .deleteBtn:active {
+  transform: scale(0.95);
+}
+
+#taskList:empty::before {
+  content: "Nothing on your list yet.";
+  display: block;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 13px;
+  padding: 18px 0;
+  border: 1px dashed var(--line);
+  border-radius: 9px;
+}
